@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Card, CardContent, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem, RadioGroup, FormControlLabel, Radio, Box, Grid } from '@mui/material';
+import { Card, CardContent, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem, RadioGroup, FormControlLabel, Radio, Box, Grid, Avatar, Chip, Divider } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addTransaction } from '../features/transactions/transactionsSlice';
-import { Add } from '@mui/icons-material';
+import AddIcon from '@mui/icons-material/Add'; // Correction ici
+import { motion } from 'framer-motion';
 
 const categories = [
   'Alimentation',
@@ -54,11 +55,16 @@ const AddTransaction = () => {
   };
 
   return (
-    <Card sx={{ height: '100%' }}>
+    <Card sx={{ height: '100%', position: 'relative', overflow: 'hidden' }}>
       <CardContent>
-        <Typography variant="h5" component="div" sx={{ mb: 3 }}>
-          Ajouter une Transaction
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+          <Avatar sx={{ bgcolor: 'primary.main', mr: 2, width: 48, height: 48 }}>
+            <AddIcon /> {/* Correction ici */}
+          </Avatar>
+          <Typography variant="h5" component="div">
+            Ajouter une Transaction
+          </Typography>
+        </Box>
         
         <Box component="form" onSubmit={onSubmit}>
           <Grid container spacing={2}>
@@ -69,6 +75,7 @@ const AddTransaction = () => {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Entrez un libellé..."
+                variant="outlined"
               />
             </Grid>
             
@@ -80,6 +87,7 @@ const AddTransaction = () => {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="Entrez un montant..."
+                variant="outlined"
               />
             </Grid>
             
@@ -91,8 +99,26 @@ const AddTransaction = () => {
                   value={type}
                   onChange={(e) => setType(e.target.value)}
                 >
-                  <FormControlLabel value="income" control={<Radio />} label="Revenu" />
-                  <FormControlLabel value="expense" control={<Radio />} label="Dépense" />
+                  <FormControlLabel 
+                    value="income" 
+                    control={<Radio />} 
+                    label={
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Chip label="Revenu" size="small" color="success" sx={{ mr: 1 }} />
+                        <Typography variant="body2">Revenu</Typography>
+                      </Box>
+                    } 
+                  />
+                  <FormControlLabel 
+                    value="expense" 
+                    control={<Radio />} 
+                    label={
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Chip label="Dépense" size="small" color="error" sx={{ mr: 1 }} />
+                        <Typography variant="body2">Dépense</Typography>
+                      </Box>
+                    } 
+                  />
                 </RadioGroup>
               </FormControl>
             </Grid>
@@ -122,6 +148,7 @@ const AddTransaction = () => {
                       value={customCategory}
                       onChange={(e) => setCustomCategory(e.target.value)}
                       placeholder="Entrez un nom de catégorie personnalisé"
+                      variant="outlined"
                     />
                   </Grid>
                 )}
@@ -135,6 +162,7 @@ const AddTransaction = () => {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+                variant="outlined"
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -142,15 +170,20 @@ const AddTransaction = () => {
             </Grid>
             
             <Grid item xs={12}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                startIcon={<Add />}
-                sx={{ mt: 2 }}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Ajouter
-              </Button>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  startIcon={<AddIcon />}
+                  sx={{ mt: 2, py: 1.5 }}
+                >
+                  Ajouter
+                </Button>
+              </motion.div>
             </Grid>
           </Grid>
         </Box>
