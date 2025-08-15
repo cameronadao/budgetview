@@ -7,7 +7,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { fr } from 'date-fns/locale';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { format } from 'date-fns';
+// L'importation 'format' a été supprimée car elle n'est pas utilisée
 
 const IncomeView = () => {
   const [text, setText] = useState('');
