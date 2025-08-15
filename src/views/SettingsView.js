@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Typography, Card, CardContent, Box, Switch, FormControlLabel, Divider, Button, TextField, Grid } from '@mui/material';
+import { Container, Typography, Card, CardContent, Box, Switch, FormControlLabel, Button, TextField, Grid } from '@mui/material'; // Suppression de Divider
 import { useTheme } from '../hooks/useTheme';
 
 const SettingsView = () => {

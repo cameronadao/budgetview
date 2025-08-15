@@ -1,77 +1,97 @@
-import React from 'react';
-import { Card, CardContent, Grid, Typography, Box, Button } from '@mui/material';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { Container, Typography, Card, CardContent, TextField, Button, Box, Grid } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { addTransaction } from '../features/transactions/transactionsSlice';
+import { Add } from '@mui/icons-material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { fr } from 'date-fns/locale';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+// Suppression de l'importation 'format'
 
-const IncomeExpense = () => {
-  const transactions = useSelector((state) => state.transactions.transactions);
-  
-  const amounts = transactions.map(transaction => transaction.amount);
-  const income = amounts
-    .filter(item => item > 0)
-    .reduce((acc, item) => (acc += item), 0)
-    .toFixed(2);
+const IncomeView = () => {
+  const [text, setText] = useState('');
+  const [amount, setAmount] = useState('');
+  const [date, setDate] = useState(new Date());
+  const dispatch = useDispatch();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
     
-  const expense = (amounts
-    .filter(item => item < 0)
-    .reduce((acc, item) => (acc += item), 0) * -1)
-    .toFixed(2);
+    if (!text.trim() || !amount) return;
+    
+    const newTransaction = {
+      id: Math.floor(Math.random() * 1000000),
+      text,
+      amount: +amount,
+      type: 'income',
+      category: 'Revenu',
+      date: date.toISOString(),
+    };
+    
+    dispatch(addTransaction(newTransaction));
+    setText('');
+    setAmount('');
+    setDate(new Date());
+  };
 
   return (
-    <Card sx={{ height: '100%' }}>
-      <CardContent>
-        <Grid container spacing={{ xs: 2, sm: 3 }}>
-          <Grid item xs={12} sm={6}>
-            <Box sx={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center',
-              p: { xs: 2, sm: 3 },
-              borderRadius: 2,
-              bgcolor: 'success.main',
-              color: 'white'
-            }}>
-              <TrendingUpIcon sx={{ fontSize: { xs: 30, sm: 40 }, mb: 1 }} />
-              <Typography variant="h6">Revenus</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-                +{income}€
-              </Typography>
-              <Button variant="contained" sx={{ mt: 2, bgcolor: 'white', color: 'success.main' }}>
-                Ajouter un revenu
-              </Button>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box sx={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center',
-              p: { xs: 2, sm: 3 },
-              borderRadius: 2,
-              bgcolor: 'error.main',
-              color: 'white'
-            }}>
-              <TrendingDownIcon sx={{ fontSize: { xs: 30, sm: 40 }, mb: 1 }} />
-              <Typography variant="h6">Dépenses</Typography>
-              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-                -{expense}€
-              </Typography>
-              <Button variant="contained" sx={{ mt: 2, bgcolor: 'white', color: 'error.main' }}>
-                Ajouter une dépense
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
-        
-        <Box sx={{ mt: 3 }}>
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Répartition par catégorie
-          </Typography>
-        </Box>
-      </CardContent>
-    </Card>
+    <Container>
+      <Typography variant="h4" gutterBottom>Ajouter un Revenu</Typography>
+      
+      <Card>
+        <CardContent>
+          <Box component="form" onSubmit={onSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Libellé"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder="Ex: Salaire, Cadeau, etc."
+                />
+              </Grid>
+              
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Montant"
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  placeholder="Entrez un montant..."
+                />
+              </Grid>
+              
+              <Grid item xs={12}>
+                <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={fr}>
+                  <DateTimePicker
+                    label="Date et heure"
+                    value={date}
+                    onChange={(newValue) => setDate(newValue)}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Grid>
+              
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  startIcon={<Add />}
+                  sx={{ mt: 2 }}
+                >
+                  Ajouter un revenu
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+        </CardContent>
+      </Card>
+    </Container>
   );
 };
 
-export default IncomeExpense;
+export default IncomeView;

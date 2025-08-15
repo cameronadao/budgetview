@@ -2,18 +2,18 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { ThemeProvider, useTheme } from '../hooks/useTheme'; // Correction ici
+import { useTheme } from '../hooks/useTheme'; // Suppression de ThemeProvider
 import GlobalStyles from '../styles/GlobalStyles';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../styles/theme';
 import Layout from '../components/Layout';
-import DashboardView from '../views/DashboardView'; // Correction du chemin
-import BalanceView from '../views/BalanceView'; // Correction du chemin
-import IncomeView from '../views/IncomeView'; // Correction du chemin
-import ExpenseView from '../views/ExpenseView'; // Correction du chemin
-import StatsView from '../views/StatsView'; // Correction du chemin
-import SettingsView from '../views/SettingsView'; // Correction du chemin
-import AddTransactionView from '../views/AddTransactionView'; // Correction du chemin
+import DashboardView from '../views/DashboardView';
+import BalanceView from '../views/BalanceView';
+import IncomeView from '../views/IncomeView';
+import ExpenseView from '../views/ExpenseView';
+import StatsView from '../views/StatsView';
+import SettingsView from '../views/SettingsView';
+import AddTransactionView from '../views/AddTransactionView';
 
 function AppContent() {
   const { theme } = useTheme();

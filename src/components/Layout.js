@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Box, CssBaseline, Toolbar, IconButton, Drawer } from '@mui/material';
+import { Box, CssBaseline, Toolbar, Drawer } from '@mui/material'; // Suppression de IconButton et MenuIcon
 import { motion } from 'framer-motion';
-import MenuIcon from '@mui/icons-material/Menu';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import FloatingActionButton from './FloatingActionButton';
