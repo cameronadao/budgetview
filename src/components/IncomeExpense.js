@@ -21,18 +21,18 @@ const IncomeExpense = () => {
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
+        <Grid container spacing={{ xs: 2, sm: 3 }}>
+          <Grid item xs={12} sm={6}>
             <Box sx={{ 
               display: 'flex', 
               flexDirection: 'column', 
               alignItems: 'center',
-              p: 2,
+              p: { xs: 2, sm: 3 },
               borderRadius: 2,
               bgcolor: 'success.main',
               color: 'white'
             }}>
-              <TrendingUpIcon sx={{ fontSize: 40, mb: 1 }} />
+              <TrendingUpIcon sx={{ fontSize: { xs: 30, sm: 40 }, mb: 1 }} />
               <Typography variant="h6">Revenus</Typography>
               <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
                 +{income}€
@@ -42,17 +42,17 @@ const IncomeExpense = () => {
               </Button>
             </Box>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Box sx={{ 
               display: 'flex', 
               flexDirection: 'column', 
               alignItems: 'center',
-              p: 2,
+              p: { xs: 2, sm: 3 },
               borderRadius: 2,
               bgcolor: 'error.main',
               color: 'white'
             }}>
-              <TrendingDownIcon sx={{ fontSize: 40, mb: 1 }} />
+              <TrendingDownIcon sx={{ fontSize: { xs: 30, sm: 40 }, mb: 1 }} />
               <Typography variant="h6">Dépenses</Typography>
               <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
                 -{expense}€

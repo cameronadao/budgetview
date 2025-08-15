@@ -22,7 +22,8 @@ const Balance = () => {
           component="div" 
           sx={{ 
             fontWeight: 'bold',
-            color: total >= 0 ? 'success.main' : 'error.main'
+            color: total >= 0 ? 'success.main' : 'error.main',
+            fontSize: { xs: '1.5rem', sm: '2rem' }
           }}
         >
           {total}€

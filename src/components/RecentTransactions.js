@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardContent, Typography, Box, TextField, InputAdornment, Chip, IconButton } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Card, CardContent, Typography, Box, TextField, InputAdornment, Chip, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,61 +20,58 @@ const RecentTransactions = () => {
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
           <Typography variant="h5" component="div">
             Transactions Récentes
           </Typography>
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <TextField
+              variant="outlined"
+              placeholder="Rechercher..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{ width: { xs: '100%', sm: 200 } }}
+            />
+            <IconButton>
+              <FilterListIcon />
+            </IconButton>
+          </Box>
         </Box>
         
-        <Box sx={{ mb: 3 }}>
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Rechercher une transaction..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Box>
-        
-        <Box sx={{ maxHeight: 400, overflowY: 'auto' }}>
-          {filteredTransactions.length > 0 ? (
-            filteredTransactions.slice(0, 10).map((transaction) => (
-              <motion.div
-                key={transaction.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Box sx={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center',
-                  p: 2,
-                  mb: 1,
-                  borderRadius: 1,
-                  bgcolor: 'background.paper',
-                  border: '1px solid',
-                  borderColor: 'divider'
-                }}>
-                  <Box>
-                    <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                      {transaction.text}
-                    </Typography>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                      <Typography variant="body2" color="text.secondary" sx={{ mr: 2 }}>
+        <TableContainer component={Paper} sx={{ maxHeight: 400 }}>
+          <Table stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell>Description</TableCell>
+                <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}>Date</TableCell>
+                <TableCell>Catégorie</TableCell>
+                <TableCell align="right">Montant</TableCell>
+                <TableCell align="right">Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filteredTransactions.length > 0 ? (
+                filteredTransactions.slice(0, 10).map((transaction) => (
+                  <TableRow key={transaction.id}>
+                    <TableCell>
+                      <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+                        {transaction.text}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ display: { xs: 'block', sm: 'none' } }}>
                         {format(new Date(transaction.date), 'dd MMM yyyy', { locale: fr })}
                       </Typography>
+                    </TableCell>
+                    <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}>
+                      {format(new Date(transaction.date), 'dd MMM yyyy', { locale: fr })}
+                    </TableCell>
+                    <TableCell>
                       {transaction.category && (
                         <Chip 
                           label={transaction.category} 
@@ -83,54 +79,41 @@ const RecentTransactions = () => {
                           variant="outlined"
                         />
                       )}
-                    </Box>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Typography 
-                      variant="h6" 
-                      sx={{ 
-                        mr: 2,
-                        color: transaction.amount < 0 ? 'error.main' : 'success.main',
-                        fontWeight: 'bold'
-                      }}
-                    >
-                      {transaction.amount < 0 ? '-' : '+'}
-                      {Math.abs(transaction.amount).toFixed(2)}€
+                    </TableCell>
+                    <TableCell align="right">
+                      <Typography 
+                        variant="h6" 
+                        sx={{ 
+                          color: transaction.amount < 0 ? 'error.main' : 'success.main',
+                          fontWeight: 'bold'
+                        }}
+                      >
+                        {transaction.amount < 0 ? '-' : '+'}
+                        {Math.abs(transaction.amount).toFixed(2)}€
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="right">
+                      <IconButton 
+                        color="error"
+                        onClick={() => dispatch(deleteTransaction(transaction.id))}
+                      >
+                        ×
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={5} align="center">
+                    <Typography variant="body2" color="text.secondary">
+                      {searchTerm ? 'Aucune transaction trouvée' : 'Aucune transaction enregistrée'}
                     </Typography>
-                    <Box 
-                      component="button" 
-                      sx={{ 
-                        background: 'none',
-                        border: 'none',
-                        color: 'error.main',
-                        cursor: 'pointer',
-                        fontSize: '1.2rem',
-                        '&:hover': {
-                          color: 'error.dark',
-                        }
-                      }}
-                      onClick={() => dispatch(deleteTransaction(transaction.id))}
-                    >
-                      ×
-                    </Box>
-                  </Box>
-                </Box>
-              </motion.div>
-            ))
-          ) : (
-            <Box sx={{ 
-              display: 'flex', 
-              justifyContent: 'center', 
-              alignItems: 'center', 
-              height: '100%',
-              minHeight: 200
-            }}>
-              <Typography variant="body2" color="text.secondary">
-                {searchTerm ? 'Aucune transaction trouvée' : 'Aucune transaction enregistrée'}
-              </Typography>
-            </Box>
-          )}
-        </Box>
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </CardContent>
     </Card>
   );

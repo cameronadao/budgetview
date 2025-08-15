@@ -1,17 +1,19 @@
 import React from 'react';
-import { Container, Grid } from '@mui/material';
-import Balance from '../components/Balance';
-import IncomeExpense from '../components/IncomeExpense';
-import AddTransaction from '../components/AddTransaction';
-import ExpenseChart from '../components/ExpenseChart';
-import StatsCards from '../components/StatsCards';
-import BudgetOverview from '../components/BudgetOverview';
-import RecentTransactions from '../components/RecentTransactions';
-import Layout from '../components/Layout';
-import { useTheme } from '../hooks/useTheme';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import { ThemeProvider, useTheme } from '../hooks/useTheme'; // Correction ici
 import GlobalStyles from '../styles/GlobalStyles';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../styles/theme';
+import Layout from '../components/Layout';
+import DashboardView from '../views/DashboardView'; // Correction du chemin
+import BalanceView from '../views/BalanceView'; // Correction du chemin
+import IncomeView from '../views/IncomeView'; // Correction du chemin
+import ExpenseView from '../views/ExpenseView'; // Correction du chemin
+import StatsView from '../views/StatsView'; // Correction du chemin
+import SettingsView from '../views/SettingsView'; // Correction du chemin
+import AddTransactionView from '../views/AddTransactionView'; // Correction du chemin
 
 function AppContent() {
   const { theme } = useTheme();
@@ -21,49 +23,28 @@ function AppContent() {
     <StyledThemeProvider theme={currentTheme}>
       <GlobalStyles />
       <Layout>
-        <Container maxWidth="xl">
-          <Grid container spacing={3}>
-            {/* Stats Cards */}
-            <Grid item xs={12}>
-              <StatsCards />
-            </Grid>
-            
-            {/* Balance and Income/Expense */}
-            <Grid item xs={12} md={4}>
-              <Balance />
-            </Grid>
-            
-            <Grid item xs={12} md={8}>
-              <IncomeExpense />
-            </Grid>
-            
-            {/* Charts */}
-            <Grid item xs={12} md={8}>
-              <ExpenseChart />
-            </Grid>
-            
-            <Grid item xs={12} md={4}>
-              <BudgetOverview />
-            </Grid>
-            
-            {/* Recent Transactions */}
-            <Grid item xs={12} md={8}>
-              <RecentTransactions />
-            </Grid>
-            
-            {/* Add Transaction Form */}
-            <Grid item xs={12} md={4}>
-              <AddTransaction />
-            </Grid>
-          </Grid>
-        </Container>
+        <Routes>
+          <Route path="/" element={<DashboardView />} />
+          <Route path="/balance" element={<BalanceView />} />
+          <Route path="/income" element={<IncomeView />} />
+          <Route path="/expense" element={<ExpenseView />} />
+          <Route path="/stats" element={<StatsView />} />
+          <Route path="/settings" element={<SettingsView />} />
+          <Route path="/add-transaction" element={<AddTransactionView />} />
+        </Routes>
       </Layout>
     </StyledThemeProvider>
   );
 }
 
 function App() {
-  return <AppContent />;
+  return (
+    <Provider store={store}>
+      <Router>
+        <AppContent />
+      </Router>
+    </Provider>
+  );
 }
 
 export default App;

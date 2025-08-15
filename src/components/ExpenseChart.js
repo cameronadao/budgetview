@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, Typography, Box, Tabs, Tab } from '@mui/material';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'];
@@ -32,7 +31,7 @@ const ExpenseChart = () => {
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
           <Typography variant="h5" component="div">
             Analyse des Dépenses
           </Typography>
@@ -42,7 +41,7 @@ const ExpenseChart = () => {
           </Tabs>
         </Box>
         
-        <Box sx={{ height: 400 }}>
+        <Box sx={{ height: { xs: 300, sm: 400 } }}>
           {data.length > 0 ? (
             <ResponsiveContainer width="100%" height="100%">
               {chartType === 'pie' ? (

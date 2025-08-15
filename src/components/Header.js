@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ThemeToggle from './ThemeToggle';
 
-const Header = () => {
+const Header = ({ onDrawerToggle }) => {
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar>
@@ -13,6 +13,7 @@ const Header = () => {
           color="inherit"
           aria-label="open drawer"
           edge="start"
+          onClick={onDrawerToggle}
           sx={{ mr: 2, display: { sm: 'none' } }}
         >
           <MenuIcon />
@@ -23,8 +24,8 @@ const Header = () => {
           transition={{ duration: 0.5 }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <AccountBalanceWalletIcon sx={{ mr: 2, fontSize: 28 }} />
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+            <AccountBalanceWalletIcon sx={{ mr: 2, fontSize: { xs: 24, sm: 28 } }} />
+            <Typography variant={{ xs: 'h5', sm: 'h4' }} component="div" sx={{ flexGrow: 1 }}>
               BudgetView
             </Typography>
           </Box>

@@ -1,23 +1,25 @@
 import React from 'react';
 import { Drawer, Box, List, ListItem, ListItemIcon, ListItemText, Divider, Toolbar } from '@mui/material';
-import { motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import PieChartIcon from '@mui/icons-material/PieChart';
 import SettingsIcon from '@mui/icons-material/Settings';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const drawerWidth = 240;
 
 const Sidebar = () => {
   const menuItems = [
-    { text: 'Tableau de bord', icon: <DashboardIcon /> },
-    { text: 'Solde', icon: <AccountBalanceIcon /> },
-    { text: 'Revenus', icon: <TrendingUpIcon /> },
-    { text: 'Dépenses', icon: <TrendingDownIcon /> },
-    { text: 'Statistiques', icon: <PieChartIcon /> },
-    { text: 'Paramètres', icon: <SettingsIcon /> },
+    { text: 'Tableau de bord', icon: <DashboardIcon />, path: '/' },
+    { text: 'Solde', icon: <AccountBalanceIcon />, path: '/balance' },
+    { text: 'Revenus', icon: <TrendingUpIcon />, path: '/income' },
+    { text: 'Dépenses', icon: <TrendingDownIcon />, path: '/expense' },
+    { text: 'Statistiques', icon: <PieChartIcon />, path: '/stats' },
+    { text: 'Ajouter Transaction', icon: <AddCircleIcon />, path: '/add-transaction' },
+    { text: 'Paramètres', icon: <SettingsIcon />, path: '/settings' },
   ];
 
   return (
@@ -32,18 +34,26 @@ const Sidebar = () => {
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
         <List>
-          {menuItems.map((item, index) => (
-            <motion.div
+          {menuItems.map((item) => (
+            <ListItem 
+              button 
               key={item.text}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              component={NavLink}
+              to={item.path}
+              sx={{
+                '&.active': {
+                  backgroundColor: 'rgba(0, 0, 0, 0.08)',
+                  borderLeft: '4px solid',
+                  borderColor: 'primary.main',
+                },
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                },
+              }}
             >
-              <ListItem button>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItem>
-            </motion.div>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItem>
           ))}
         </List>
         <Divider />

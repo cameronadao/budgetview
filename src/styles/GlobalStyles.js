@@ -26,6 +26,21 @@ const GlobalStyles = createGlobalStyle`
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
   }
+
+  /* Responsive styles */
+  @media (max-width: 600px) {
+    .MuiTypography-h4 {
+      font-size: 1.5rem;
+    }
+    
+    .MuiTypography-h5 {
+      font-size: 1.25rem;
+    }
+    
+    .MuiTypography-h6 {
+      font-size: 1rem;
+    }
+  }
 `;
 
 export default GlobalStyles;

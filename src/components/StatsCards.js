@@ -71,7 +71,7 @@ const StatsCards = () => {
   ];
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={{ xs: 2, sm: 3 }}>
       {stats.map((stat, index) => (
         <Grid item xs={12} sm={6} md={2.4} key={index}>
           <motion.div
