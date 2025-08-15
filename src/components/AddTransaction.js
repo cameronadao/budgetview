@@ -21,6 +21,7 @@ const AddTransaction = () => {
   const [amount, setAmount] = useState('');
   const [type, setType] = useState('expense');
   const [category, setCategory] = useState('Autre');
+  const [customCategory, setCustomCategory] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const dispatch = useDispatch();
 
@@ -29,12 +30,17 @@ const AddTransaction = () => {
     
     if (!text.trim() || !amount) return;
     
+    // Déterminer la catégorie finale
+    const finalCategory = category === 'Autre' && customCategory.trim() 
+      ? customCategory.trim() 
+      : category;
+    
     const newTransaction = {
       id: Math.floor(Math.random() * 1000000),
       text,
       amount: +amount * (type === 'expense' ? -1 : 1),
       type,
-      category: type === 'expense' ? category : 'Revenu',
+      category: type === 'expense' ? finalCategory : 'Revenu',
       date: new Date(date).toISOString(),
     };
     
@@ -43,6 +49,7 @@ const AddTransaction = () => {
     setAmount('');
     setType('expense');
     setCategory('Autre');
+    setCustomCategory('');
     setDate(new Date().toISOString().split('T')[0]);
   };
 
@@ -91,20 +98,34 @@ const AddTransaction = () => {
             </Grid>
             
             {type === 'expense' && (
-              <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel>Catégorie</InputLabel>
-                  <Select
-                    value={category}
-                    label="Catégorie"
-                    onChange={(e) => setCategory(e.target.value)}
-                  >
-                    {categories.map((cat) => (
-                      <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
+              <>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <InputLabel>Catégorie</InputLabel>
+                    <Select
+                      value={category}
+                      label="Catégorie"
+                      onChange={(e) => setCategory(e.target.value)}
+                    >
+                      {categories.map((cat) => (
+                        <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                
+                {category === 'Autre' && (
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Nom de la catégorie"
+                      value={customCategory}
+                      onChange={(e) => setCustomCategory(e.target.value)}
+                      placeholder="Entrez un nom de catégorie personnalisé"
+                    />
+                  </Grid>
+                )}
+              </>
             )}
             
             <Grid item xs={12}>
