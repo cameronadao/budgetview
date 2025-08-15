@@ -6,8 +6,9 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import PieChartIcon from '@mui/icons-material/PieChart';
-import SettingsIcon from '@mui/icons-material/Settings';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const drawerWidth = 240;
 
@@ -18,6 +19,7 @@ const Sidebar = () => {
     { text: 'Revenus', icon: <TrendingUpIcon />, path: '/income' },
     { text: 'Dépenses', icon: <TrendingDownIcon />, path: '/expense' },
     { text: 'Statistiques', icon: <PieChartIcon />, path: '/stats' },
+    { text: 'Calendrier', icon: <CalendarTodayIcon />, path: '/calendar' },
     { text: 'Ajouter Transaction', icon: <AddCircleIcon />, path: '/add-transaction' },
     { text: 'Paramètres', icon: <SettingsIcon />, path: '/settings' },
   ];

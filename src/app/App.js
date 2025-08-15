@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { useTheme } from '../hooks/useTheme'; // Suppression de ThemeProvider
+import { useTheme } from '../hooks/useTheme';
 import GlobalStyles from '../styles/GlobalStyles';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../styles/theme';
@@ -12,6 +12,7 @@ import BalanceView from '../views/BalanceView';
 import IncomeView from '../views/IncomeView';
 import ExpenseView from '../views/ExpenseView';
 import StatsView from '../views/StatsView';
+import CalendarView from '../views/CalendarView';
 import SettingsView from '../views/SettingsView';
 import AddTransactionView from '../views/AddTransactionView';
 
@@ -29,6 +30,7 @@ function AppContent() {
           <Route path="/income" element={<IncomeView />} />
           <Route path="/expense" element={<ExpenseView />} />
           <Route path="/stats" element={<StatsView />} />
+          <Route path="/calendar" element={<CalendarView />} />
           <Route path="/settings" element={<SettingsView />} />
           <Route path="/add-transaction" element={<AddTransactionView />} />
         </Routes>
