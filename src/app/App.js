@@ -1,9 +1,7 @@
 import React from 'react';
 import { Container, Grid } from '@mui/material';
-import { motion } from 'framer-motion';
 import Balance from '../components/Balance';
 import IncomeExpense from '../components/IncomeExpense';
-import TransactionList from '../components/TransactionList';
 import AddTransaction from '../components/AddTransaction';
 import ExpenseChart from '../components/ExpenseChart';
 import StatsCards from '../components/StatsCards';
@@ -27,77 +25,35 @@ function AppContent() {
           <Grid container spacing={3}>
             {/* Stats Cards */}
             <Grid item xs={12}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <StatsCards />
-              </motion.div>
+              <StatsCards />
             </Grid>
             
             {/* Balance and Income/Expense */}
             <Grid item xs={12} md={4}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <Balance />
-              </motion.div>
+              <Balance />
             </Grid>
             
             <Grid item xs={12} md={8}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <IncomeExpense />
-              </motion.div>
+              <IncomeExpense />
             </Grid>
             
             {/* Charts */}
             <Grid item xs={12} md={8}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <ExpenseChart />
-              </motion.div>
+              <ExpenseChart />
             </Grid>
             
             <Grid item xs={12} md={4}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <BudgetOverview />
-              </motion.div>
+              <BudgetOverview />
             </Grid>
             
             {/* Recent Transactions */}
             <Grid item xs={12} md={8}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <RecentTransactions />
-              </motion.div>
+              <RecentTransactions />
             </Grid>
             
             {/* Add Transaction Form */}
             <Grid item xs={12} md={4}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-              >
-                <AddTransaction />
-              </motion.div>
+              <AddTransaction />
             </Grid>
           </Grid>
         </Container>

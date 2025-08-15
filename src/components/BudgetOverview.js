@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardContent, Typography, Box, LinearProgress, Button } from '@mui/material';
-import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { format, startOfMonth, endOfMonth, isWithinInterval } from 'date-fns';
 import { fr } from 'date-fns/locale';
@@ -28,7 +27,7 @@ const BudgetOverview = () => {
       return acc;
     }, {});
   
-  // Budget limits (could be user-configurable in a real app)
+  // Budget limits
   const budgetLimits = {
     'Alimentation': 400,
     'Logement': 800,

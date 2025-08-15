@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardContent, Typography, Box, Button } from '@mui/material';
-import { motion } from 'framer-motion';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { useSelector } from 'react-redux';
 

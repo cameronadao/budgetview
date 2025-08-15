@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardContent, Grid, Typography, Box, Button } from '@mui/material';
-import { motion } from 'framer-motion';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import { useSelector } from 'react-redux';
@@ -69,7 +68,6 @@ const IncomeExpense = () => {
           <Typography variant="h6" sx={{ mb: 2 }}>
             Répartition par catégorie
           </Typography>
-          {/* Ici vous pouvez ajouter un petit graphique */}
         </Box>
       </CardContent>
     </Card>

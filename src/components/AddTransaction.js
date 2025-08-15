@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem, RadioGroup, FormControlLabel, Radio, Box, Grid } from '@mui/material';
-import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { addTransaction } from '../features/transactions/transactionsSlice';
 import { Add } from '@mui/icons-material';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { fr } from 'date-fns/locale';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 const categories = [
   'Alimentation',
@@ -26,7 +21,7 @@ const AddTransaction = () => {
   const [amount, setAmount] = useState('');
   const [type, setType] = useState('expense');
   const [category, setCategory] = useState('Autre');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
@@ -40,7 +35,7 @@ const AddTransaction = () => {
       amount: +amount * (type === 'expense' ? -1 : 1),
       type,
       category: type === 'expense' ? category : 'Revenu',
-      date: date.toISOString(),
+      date: new Date(date).toISOString(),
     };
     
     dispatch(addTransaction(newTransaction));
@@ -48,7 +43,7 @@ const AddTransaction = () => {
     setAmount('');
     setType('expense');
     setCategory('Autre');
-    setDate(new Date());
+    setDate(new Date().toISOString().split('T')[0]);
   };
 
   return (
@@ -113,14 +108,16 @@ const AddTransaction = () => {
             )}
             
             <Grid item xs={12}>
-              <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={fr}>
-                <DateTimePicker
-                  label="Date et heure"
-                  value={date}
-                  onChange={(newValue) => setDate(newValue)}
-                  renderInput={(params) => <TextField {...params} fullWidth />}
-                />
-              </LocalizationProvider>
+              <TextField
+                fullWidth
+                label="Date"
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </Grid>
             
             <Grid item xs={12}>
