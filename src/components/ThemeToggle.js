@@ -1,34 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
+import { IconButton, Tooltip } from '@mui/material';
+import { motion } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
-
-const ToggleContainer = styled.button`
-  background: ${props => props.theme.cardBackground};
-  border: none;
-  border-radius: 50px;
-  padding: 8px 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-  &:hover {
-    opacity: 0.9;
-  }
-  
-  .icon {
-    font-size: 1.2rem;
-  }
-`;
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <ToggleContainer onClick={toggleTheme}>
-      <span className="icon">{theme === 'light' ? '🌙' : '☀️'}</span>
-    </ToggleContainer>
+    <Tooltip title={`Passer en mode ${theme === 'light' ? 'sombre' : 'clair'}`}>
+      <IconButton 
+        onClick={toggleTheme}
+        color="inherit"
+        component={motion.button}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        {theme === 'light' ? '🌙' : '☀️'}
+      </IconButton>
+    </Tooltip>
   );
 };
 

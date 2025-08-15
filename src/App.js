@@ -21,5 +21,7 @@ function App() {
     </div>
   );
 }
-
+function App() {
+  return <AppContent />;
+}
 export default App;

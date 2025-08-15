@@ -1,14 +1,8 @@
 import React from 'react';
+import { Card, CardContent, Typography, Box, Button } from '@mui/material';
+import { motion } from 'framer-motion';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-
-const BalanceContainer = styled.div`
-  background: ${props => props.theme.cardBackground};
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-`;
 
 const Balance = () => {
   const transactions = useSelector((state) => state.transactions.transactions);
@@ -16,10 +10,34 @@ const Balance = () => {
   const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
 
   return (
-    <BalanceContainer>
-      <h4>Votre Solde</h4>
-      <h1>{total}€</h1>
-    </BalanceContainer>
+    <Card sx={{ height: '100%' }}>
+      <CardContent>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <AccountBalanceIcon sx={{ mr: 1, color: 'primary.main' }} />
+          <Typography variant="h5" component="div">
+            Solde Actuel
+          </Typography>
+        </Box>
+        <Typography 
+          variant="h2" 
+          component="div" 
+          sx={{ 
+            fontWeight: 'bold',
+            color: total >= 0 ? 'success.main' : 'error.main'
+          }}
+        >
+          {total}€
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          Mis à jour aujourd'hui
+        </Typography>
+        <Box sx={{ mt: 3 }}>
+          <Button variant="contained" fullWidth>
+            Voir le détail
+          </Button>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,4 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { muiLightTheme, muiDarkTheme } from '../styles/muiTheme';
 
 const ThemeContext = createContext();
 
@@ -13,12 +15,16 @@ export const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
+  const muiTheme = theme === 'light' ? muiLightTheme : muiDarkTheme;
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
+    <ThemeContext.Provider value={{ theme, toggleTheme, muiTheme }}>
+      <MuiThemeProvider theme={muiTheme}>
+        {children}
+      </MuiThemeProvider>
     </ThemeContext.Provider>
   );
 };

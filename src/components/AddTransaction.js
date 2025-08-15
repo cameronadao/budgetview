@@ -1,22 +1,33 @@
 import React, { useState } from 'react';
+import { Card, CardContent, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem, RadioGroup, FormControlLabel, Radio, Box, Grid } from '@mui/material';
+import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import { addTransaction } from '../features/transactions/transactionsSlice';
-import styled from 'styled-components';
+import { Add } from '@mui/icons-material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { fr } from 'date-fns/locale';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
-const FormContainer = styled.div`
-  background: ${props => props.theme.cardBackground};
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-`;
+const categories = [
+  'Alimentation',
+  'Logement',
+  'Transport',
+  'Loisirs',
+  'Santé',
+  'Shopping',
+  'Voyages',
+  'Éducation',
+  'Autre'
+];
 
 const AddTransaction = () => {
   const [text, setText] = useState('');
   const [amount, setAmount] = useState('');
   const [type, setType] = useState('expense');
-  const dispatch = useDispatch();
   const [category, setCategory] = useState('Autre');
+  const [date, setDate] = useState(new Date());
+  const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -28,75 +39,105 @@ const AddTransaction = () => {
       text,
       amount: +amount * (type === 'expense' ? -1 : 1),
       type,
-      date: new Date().toISOString(),
+      category: type === 'expense' ? category : 'Revenu',
+      date: date.toISOString(),
     };
     
     dispatch(addTransaction(newTransaction));
     setText('');
     setAmount('');
+    setType('expense');
+    setCategory('Autre');
+    setDate(new Date());
   };
 
   return (
-    <FormContainer>
-      <h3>Ajouter une transaction</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-control">
-          <label htmlFor="text">Libellé</label>
-          <input
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Entrez un libellé..."
-          />
-        </div>
-        <div className="form-control">
-          <label htmlFor="amount">Montant</label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="Entrez un montant..."
-          />
-        </div>
-        <div className="form-control">
-          <label>Type</label>
-          <div className="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="income"
-                checked={type === 'income'}
-                onChange={() => setType('income')}
+    <Card sx={{ height: '100%' }}>
+      <CardContent>
+        <Typography variant="h5" component="div" sx={{ mb: 3 }}>
+          Ajouter une Transaction
+        </Typography>
+        
+        <Box component="form" onSubmit={onSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Libellé"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Entrez un libellé..."
               />
-              Revenu
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="expense"
-                checked={type === 'expense'}
-                onChange={() => setType('expense')}
+            </Grid>
+            
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Montant"
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                placeholder="Entrez un montant..."
               />
-              Dépense
-            </label>
-          </div>
-        </div>
-        <div className="form-control">
-  <label>Catégorie</label>
-  <select value={category} onChange={(e) => setCategory(e.target.value)}>
-    <option value="Alimentation">Alimentation</option>
-    <option value="Logement">Logement</option>
-    <option value="Transport">Transport</option>
-    <option value="Loisirs">Loisirs</option>
-    <option value="Santé">Santé</option>
-    <option value="Autre">Autre</option>
-  </select>
-</div>
-        <button className="btn">Ajouter</button>
-      </form>
-    </FormContainer>
+            </Grid>
+            
+            <Grid item xs={12}>
+              <FormControl component="fieldset">
+                <Typography variant="body1" sx={{ mb: 1 }}>Type</Typography>
+                <RadioGroup
+                  row
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                >
+                  <FormControlLabel value="income" control={<Radio />} label="Revenu" />
+                  <FormControlLabel value="expense" control={<Radio />} label="Dépense" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            
+            {type === 'expense' && (
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel>Catégorie</InputLabel>
+                  <Select
+                    value={category}
+                    label="Catégorie"
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    {categories.map((cat) => (
+                      <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+            )}
+            
+            <Grid item xs={12}>
+              <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={fr}>
+                <DateTimePicker
+                  label="Date et heure"
+                  value={date}
+                  onChange={(newValue) => setDate(newValue)}
+                  renderInput={(params) => <TextField {...params} fullWidth />}
+                />
+              </LocalizationProvider>
+            </Grid>
+            
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                startIcon={<Add />}
+                sx={{ mt: 2 }}
+              >
+                Ajouter
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 
