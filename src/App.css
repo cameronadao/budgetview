@@ -1044,3 +1044,10 @@
       margin-bottom: 10px;
     }
   }
+
+  /* Adjust main content to avoid overlap with mobile nav */
+@media (max-width: 767px) {
+    .main-content {
+      padding-bottom: 70px; /* Height of mobile nav + some padding */
+    }
+  }

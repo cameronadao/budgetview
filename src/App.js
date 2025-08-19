@@ -9,6 +9,7 @@ import './App.css';
 // Components
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
+import MobileNav from './components/layout/MobileNav';
 import Dashboard from './components/dashboard/Dashboard';
 import IncomeList from './components/income/IncomeList';
 import ExpenseList from './components/expenses/ExpenseList';
@@ -50,6 +51,7 @@ function App() {
             </Routes>
           </main>
         </div>
+        <MobileNav />
       </div>
     </Router>
   );
