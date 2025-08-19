@@ -1,10 +1,7 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-// Suppression de l'import inutilisé de useTranslation
 
 const Chart = ({ type, data, title }) => {
-  // Suppression de la variable t non utilisée
-  
   // Colors for charts
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82ca9d', '#ffc658', '#ff7300'];
   
@@ -44,7 +41,11 @@ const Chart = ({ type, data, title }) => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip />
+            <Tooltip formatter={(value) => new Intl.NumberFormat('fr-FR', {
+              style: 'currency',
+              currency: 'EUR',
+              minimumFractionDigits: 2
+            }).format(value)} />
             <Legend />
             <Bar dataKey="value" fill="#8884d8" />
           </BarChart>

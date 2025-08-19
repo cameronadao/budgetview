@@ -2,11 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import Chart from '../common/Chart';
 
 const FinancialSummary = () => {
   const { t } = useTranslation();
-  const { expenses } = useSelector(state => state.expenses);
-  const { income } = useSelector(state => state.income);
+  const { expenses, recurringExpenses } = useSelector(state => state.expenses);
+  const { income, recurringIncome } = useSelector(state => state.income);
   
   // Get current month and year
   const now = moment();
@@ -41,6 +42,12 @@ const FinancialSummary = () => {
     }).format(amount);
   };
   
+  // Prepare data for income vs expenses chart
+  const chartData = [
+    { name: t('dashboard.income'), value: monthlyIncome },
+    { name: t('dashboard.expenses'), value: monthlyExpenses }
+  ];
+  
   return (
     <div className="financial-summary">
       <div className="summary-card">
@@ -51,10 +58,11 @@ const FinancialSummary = () => {
       </div>
       
       <div className="chart-container">
-        <h3>{t('charts.incomeVsExpenses')}</h3>
-        <div className="chart-placeholder">
-          <p>{t('charts.chartPlaceholder')}</p>
-        </div>
+        <Chart 
+          type="bar" 
+          data={chartData} 
+          title={t('charts.incomeVsExpenses')} 
+        />
       </div>
     </div>
   );
