@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Changé ici
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { getExpenses, getRecurringExpenses } from './actions/expensesActions';
 import { getIncome, getRecurringIncome } from './actions/incomeActions';
-import { toggleDarkMode } from './actions/settingsActions';
 import './i18n';
 import './App.css';
 
@@ -42,12 +41,12 @@ function App() {
         <div className="app-container">
           <Sidebar />
           <main className="main-content">
-            <Routes>  // Changé ici
-              <Route exact path="/" element={<Dashboard />} />  // Changé ici
-              <Route path="/income" element={<IncomeList />} />  // Changé ici
-              <Route path="/expenses" element={<ExpenseList />} />  // Changé ici
-              <Route path="/calendar" element={<Calendar />} />  // Changé ici
-              <Route path="/settings" element={<Settings />} />  // Changé ici
+            <Routes>
+              <Route exact path="/" element={<Dashboard />} />
+              <Route path="/income" element={<IncomeList />} />
+              <Route path="/expenses" element={<ExpenseList />} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/settings" element={<Settings />} />
             </Routes>
           </main>
         </div>

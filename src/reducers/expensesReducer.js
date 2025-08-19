@@ -12,7 +12,8 @@ import {
     recurringExpenses: []
   };
   
-  export default function (state = initialState, action) {
+  // Named function for the reducer
+  function expensesReducer(state = initialState, action) {
     switch (action.type) {
       case GET_EXPENSES:
         return {
@@ -48,3 +49,5 @@ import {
         return state;
     }
   }
+  
+  export default expensesReducer;

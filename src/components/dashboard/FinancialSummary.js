@@ -5,8 +5,8 @@ import moment from 'moment';
 
 const FinancialSummary = () => {
   const { t } = useTranslation();
-  const { expenses, recurringExpenses } = useSelector(state => state.expenses);
-  const { income, recurringIncome } = useSelector(state => state.income);
+  const { expenses } = useSelector(state => state.expenses);
+  const { income } = useSelector(state => state.income);
   
   // Get current month and year
   const now = moment();

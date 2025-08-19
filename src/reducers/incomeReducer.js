@@ -12,7 +12,8 @@ import {
     recurringIncome: []
   };
   
-  export default function (state = initialState, action) {
+  // Named function for the reducer
+  function incomeReducer(state = initialState, action) {
     switch (action.type) {
       case GET_INCOME:
         return {
@@ -48,3 +49,5 @@ import {
         return state;
     }
   }
+  
+  export default incomeReducer;
