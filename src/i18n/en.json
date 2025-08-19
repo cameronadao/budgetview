@@ -1,0 +1,130 @@
+{
+    "app": {
+      "title": "BudgetView",
+      "slogan": "Your personal finance manager"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "currentBalance": "Current Balance",
+      "projectedBalance": "Projected End of Month Balance",
+      "income": "Income",
+      "expenses": "Expenses",
+      "netCashFlow": "Net Cash Flow"
+    },
+    "charts": {
+      "expensesByCategory": "Expenses by Category",
+      "incomeVsExpenses": "Income vs Expenses",
+      "monthlyTrend": "Monthly Trend",
+      "chartPlaceholder": "Chart will be displayed here"
+    },
+    "income": {
+      "title": "Income",
+      "addIncome": "Add Income",
+      "amount": "Amount",
+      "description": "Description",
+      "date": "Date",
+      "category": "Category",
+      "recurring": "Recurring",
+      "frequency": "Frequency",
+      "startDate": "Start Date",
+      "endDate": "End Date (optional)",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "oneTime": "One Time",
+      "editIncome": "Edit Income",
+      "deleteIncome": "Delete Income",
+      "recurringIncome": "Recurring Income",
+      "oneTimeIncome": "One Time Income"
+    },
+    "expenses": {
+      "title": "Expenses",
+      "addExpense": "Add Expense",
+      "amount": "Amount",
+      "description": "Description",
+      "date": "Date",
+      "category": "Category",
+      "paymentMethod": "Payment Method",
+      "recurring": "Recurring",
+      "frequency": "Frequency",
+      "startDate": "Start Date",
+      "endDate": "End Date (optional)",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "oneTime": "One Time",
+      "editExpense": "Edit Expense",
+      "deleteExpense": "Delete Expense",
+      "recurringExpenses": "Recurring Expenses",
+      "oneTimeExpenses": "One Time Expenses"
+    },
+    "categories": {
+      "salary": "Salary",
+      "freelance": "Freelance",
+      "investment": "Investment",
+      "gift": "Gift",
+      "other": "Other",
+      "food": "Food",
+      "transport": "Transport",
+      "housing": "Housing",
+      "utilities": "Utilities",
+      "entertainment": "Entertainment",
+      "health": "Health",
+      "education": "Education",
+      "shopping": "Shopping",
+      "subscriptions": "Subscriptions",
+      "travel": "Travel",
+      "insurance": "Insurance",
+      "taxes": "Taxes"
+    },
+    "paymentMethods": {
+      "cash": "Cash",
+      "creditCard": "Credit Card",
+      "debitCard": "Debit Card",
+      "bankTransfer": "Bank Transfer",
+      "check": "Check",
+      "other": "Other"
+    },
+    "calendar": {
+      "title": "Financial Calendar",
+      "noTransactions": "No transactions for this date",
+      "total": "Daily total"
+    },
+    "settings": {
+      "title": "Settings",
+      "general": "General",
+      "language": "Language",
+      "darkMode": "Dark Mode",
+      "currency": "Currency",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "common": {
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "close": "Close",
+      "confirm": "Confirm",
+      "yes": "Yes",
+      "no": "No",
+      "loading": "Loading...",
+      "error": "Error",
+      "success": "Success",
+      "noData": "No data available",
+      "noTransactions": "No transactions",
+      "total": "Total",
+      "locale": "en-US",
+      "recurring": "Recurring"
+    },
+    "messages": {
+      "deleteConfirm": "Are you sure you want to delete this item?",
+      "saveSuccess": "Save successful",
+      "deleteSuccess": "Deletion successful",
+      "errorOccurred": "An error occurred",
+      "requiredField": "This field is required",
+      "invalidAmount": "Invalid amount",
+      "invalidDate": "Invalid date"
+    }
+  }

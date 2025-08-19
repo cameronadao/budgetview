@@ -1,0 +1,37 @@
+/* Même style que AddExpenseForm.css */
+.add-income-form .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-income-form .modal-header h2 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+  }
+  
+  .add-income-form .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--gray-color);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .add-income-form .modal-close:hover {
+    color: var(--danger-color);
+  }
+  
+  .add-income-form form {
+    padding: 20px;
+  }
+  
+  .add-income-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }

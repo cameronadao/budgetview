@@ -1,0 +1,36 @@
+.add-expense-form .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-expense-form .modal-header h2 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+  }
+  
+  .add-expense-form .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--gray-color);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .add-expense-form .modal-close:hover {
+    color: var(--danger-color);
+  }
+  
+  .add-expense-form form {
+    padding: 20px;
+  }
+  
+  .add-expense-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }

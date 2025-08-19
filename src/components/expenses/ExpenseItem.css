@@ -1,0 +1,69 @@
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.02);
+    transition: var(--transition);
+  }
+  
+  .transaction-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .transaction-item .transaction-info {
+    flex: 1;
+  }
+  
+  .transaction-item .transaction-info h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .transaction-item .transaction-info p {
+    font-size: 0.875rem;
+    color: var(--gray-color);
+  }
+  
+  .transaction-item .transaction-amount {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .transaction-item .transaction-amount.income {
+    color: var(--success-color);
+  }
+  
+  .transaction-item .transaction-amount.expenses {
+    color: var(--danger-color);
+  }
+  
+  .transaction-item .transaction-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .transaction-item .transaction-actions button {
+    background: none;
+    border: none;
+    color: var(--gray-color);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .transaction-item .transaction-actions button:hover {
+    color: var(--primary-color);
+  }
+  
+  .recurring-badge {
+    display: inline-block;
+    background-color: var(--info-color);
+    color: var(--white-color);
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 5px;
+  }

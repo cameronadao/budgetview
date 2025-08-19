@@ -1,0 +1,130 @@
+{
+    "app": {
+      "title": "BudgetView",
+      "slogan": "Votre gestionnaire de finances personnelles"
+    },
+    "dashboard": {
+      "title": "Tableau de bord",
+      "currentBalance": "Solde actuel",
+      "projectedBalance": "Solde prévu à la fin du mois",
+      "income": "Revenus",
+      "expenses": "Dépenses",
+      "netCashFlow": "Flux de trésorerie net"
+    },
+    "charts": {
+      "expensesByCategory": "Dépenses par catégorie",
+      "incomeVsExpenses": "Revenus vs Dépenses",
+      "monthlyTrend": "Tendance mensuelle",
+      "chartPlaceholder": "Graphique sera affiché ici"
+    },
+    "income": {
+      "title": "Revenus",
+      "addIncome": "Ajouter un revenu",
+      "amount": "Montant",
+      "description": "Description",
+      "date": "Date",
+      "category": "Catégorie",
+      "recurring": "Récurrent",
+      "frequency": "Fréquence",
+      "startDate": "Date de début",
+      "endDate": "Date de fin (optionnel)",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel",
+      "yearly": "Annuel",
+      "oneTime": "Ponctuel",
+      "editIncome": "Modifier le revenu",
+      "deleteIncome": "Supprimer le revenu",
+      "recurringIncome": "Revenus récurrents",
+      "oneTimeIncome": "Revenus ponctuels"
+    },
+    "expenses": {
+      "title": "Dépenses",
+      "addExpense": "Ajouter une dépense",
+      "amount": "Montant",
+      "description": "Description",
+      "date": "Date",
+      "category": "Catégorie",
+      "paymentMethod": "Moyen de paiement",
+      "recurring": "Récurrent",
+      "frequency": "Fréquence",
+      "startDate": "Date de début",
+      "endDate": "Date de fin (optionnel)",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel",
+      "yearly": "Annuel",
+      "oneTime": "Ponctuel",
+      "editExpense": "Modifier la dépense",
+      "deleteExpense": "Supprimer la dépense",
+      "recurringExpenses": "Dépenses récurrentes",
+      "oneTimeExpenses": "Dépenses ponctuelles"
+    },
+    "categories": {
+      "salary": "Salaire",
+      "freelance": "Freelance",
+      "investment": "Investissement",
+      "gift": "Cadeau",
+      "other": "Autre",
+      "food": "Alimentation",
+      "transport": "Transport",
+      "housing": "Logement",
+      "utilities": "Services publics",
+      "entertainment": "Loisirs",
+      "health": "Santé",
+      "education": "Éducation",
+      "shopping": "Shopping",
+      "subscriptions": "Abonnements",
+      "travel": "Voyage",
+      "insurance": "Assurance",
+      "taxes": "Impôts"
+    },
+    "paymentMethods": {
+      "cash": "Espèces",
+      "creditCard": "Carte de crédit",
+      "debitCard": "Carte de débit",
+      "bankTransfer": "Virement bancaire",
+      "check": "Chèque",
+      "other": "Autre"
+    },
+    "calendar": {
+      "title": "Calendrier financier",
+      "noTransactions": "Aucune transaction pour cette date",
+      "total": "Total du jour"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "general": "Général",
+      "language": "Langue",
+      "darkMode": "Mode sombre",
+      "currency": "Devise",
+      "save": "Enregistrer",
+      "cancel": "Annuler"
+    },
+    "common": {
+      "add": "Ajouter",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "close": "Fermer",
+      "confirm": "Confirmer",
+      "yes": "Oui",
+      "no": "Non",
+      "loading": "Chargement...",
+      "error": "Erreur",
+      "success": "Succès",
+      "noData": "Aucune donnée disponible",
+      "noTransactions": "Aucune transaction",
+      "total": "Total",
+      "locale": "fr-FR",
+      "recurring": "Récurrent"
+    },
+    "messages": {
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+      "saveSuccess": "Enregistrement réussi",
+      "deleteSuccess": "Suppression réussie",
+      "errorOccurred": "Une erreur s'est produite",
+      "requiredField": "Ce champ est obligatoire",
+      "invalidAmount": "Montant invalide",
+      "invalidDate": "Date invalide"
+    }
+  }
