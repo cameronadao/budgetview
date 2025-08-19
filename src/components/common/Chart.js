@@ -1,9 +1,9 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { useTranslation } from 'react-i18next';
+// Suppression de l'import inutilisé de useTranslation
 
 const Chart = ({ type, data, title }) => {
-  const { t } = useTranslation();
+  // Suppression de la variable t non utilisée
   
   // Colors for charts
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82ca9d', '#ffc658', '#ff7300'];

@@ -5,7 +5,8 @@ const initialState = {
   language: localStorage.getItem('language') || 'fr'
 };
 
-export default function (state = initialState, action) {
+// Fonction nommée pour l'export par défaut
+function settingsReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_DARK_MODE:
       return {
@@ -21,3 +22,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default settingsReducer;
