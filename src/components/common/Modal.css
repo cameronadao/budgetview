@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000; /* Augmenter le z-index pour être au-dessus de la barre de navigation */
+  z-index: 2000;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -32,7 +32,7 @@
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  flex-shrink: 0; /* Empêcher le header de rétrécir */
+  flex-shrink: 0;
 }
 
 .modal-header h2 {
@@ -60,15 +60,9 @@
   overflow-y: auto;
 }
 
+/* Supprimer le footer par défaut du modal */
 .modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  flex-shrink: 0; /* Empêcher le footer de rétrécir */
-  margin-top: auto; /* Pousser le footer en bas */
-  background-color: var(--white-color); /* Assurer un fond opaque */
+  display: none; /* Cacher le footer par défaut */
 }
 
 /* Dark mode styles */
@@ -76,24 +70,19 @@
   background-color: var(--white-color);
 }
 
-.dark-mode .modal-footer {
-  background-color: var(--white-color);
-}
-
 /* Responsive styles for mobile */
 @media (max-width: 575px) {
   .modal {
     padding: 10px;
-    /* Positionner le modal en tenant compte de la barre de navigation */
     align-items: flex-start;
     padding-top: 20px;
-    padding-bottom: 80px; /* Espace suffisant pour la barre de navigation */
+    padding-bottom: 80px;
   }
 
   .modal-content {
     width: 95%;
     max-width: 100%;
-    max-height: calc(100vh - 100px); /* Hauteur maximale en tenant compte de la barre */
+    max-height: calc(100vh - 100px);
     margin-top: 20px;
   }
 
@@ -107,22 +96,14 @@
 
   .modal-body {
     padding: 15px;
-    max-height: calc(100vh - 200px); /* Ajuster pour mobile */
-  }
-
-  .modal-footer {
-    padding: 15px;
-    padding-bottom: 30px; /* Espace supplémentaire pour éviter la barre de navigation */
-    position: sticky;
-    bottom: 0;
-    z-index: 1;
+    max-height: calc(100vh - 200px);
   }
 }
 
 /* Styles pour les très petits écrans */
 @media (max-width: 375px) {
   .modal {
-    padding-bottom: 90px; /* Encore plus d'espace pour les très petits écrans */
+    padding-bottom: 90px;
   }
   
   .modal-content {
