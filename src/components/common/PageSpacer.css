@@ -1,0 +1,12 @@
+.page-spacer {
+    height: 100px;
+    width: 100%;
+    display: none;
+  }
+  
+  /* Afficher le spacer uniquement sur mobile */
+  @media (max-width: 575px) {
+    .page-spacer {
+      display: block;
+    }
+  }

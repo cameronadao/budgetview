@@ -5,8 +5,7 @@ import moment from 'moment';
 import Modal from '../common/Modal';
 import AddIncomeForm from './AddIncomeForm';
 import IncomeItem from './IncomeItem';
-import Spacer from '../common/Spacer'; // Importer le composant
-
+import PageSpacer from '../common/PageSpacer'; // Importer le PageSpacer
 
 const IncomeList = () => {
   const { t } = useTranslation();
@@ -111,7 +110,7 @@ const IncomeList = () => {
           <AddIncomeForm onClose={() => setShowAddIncome(false)} />
         </Modal>
       )}
-            <Spacer /> {/* Ajouter le spacer à la fin */}
+      <PageSpacer /> {/* Ajouter le PageSpacer à la fin */}
 
     </div>
   );
