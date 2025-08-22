@@ -1,22 +1,131 @@
+/* src/components/common/Modal.css */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* Augmenter le z-index pour être au-dessus de la barre de navigation */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background-color: var(--white-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Empêcher le header de rétrécir */
+}
+
+.modal-header h2 {
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  word-wrap: break-word;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--gray-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  color: var(--danger-color);
+}
+
+.modal-body {
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Empêcher le footer de rétrécir */
+  margin-top: auto; /* Pousser le footer en bas */
+  background-color: var(--white-color); /* Assurer un fond opaque */
+}
+
+/* Dark mode styles */
+.dark-mode .modal-content {
+  background-color: var(--white-color);
+}
+
+.dark-mode .modal-footer {
+  background-color: var(--white-color);
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 575px) {
+  .modal {
+    padding: 10px;
+    /* Positionner le modal en tenant compte de la barre de navigation */
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-bottom: 80px; /* Espace suffisant pour la barre de navigation */
+  }
+
+  .modal-content {
+    width: 95%;
+    max-width: 100%;
+    max-height: calc(100vh - 100px); /* Hauteur maximale en tenant compte de la barre */
+    margin-top: 20px;
+  }
+
+  .modal-header {
+    padding: 15px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    padding: 15px;
+    max-height: calc(100vh - 200px); /* Ajuster pour mobile */
+  }
+
+  .modal-footer {
+    padding: 15px;
+    padding-bottom: 30px; /* Espace supplémentaire pour éviter la barre de navigation */
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+
+/* Styles pour les très petits écrans */
+@media (max-width: 375px) {
+  .modal {
+    padding-bottom: 90px; /* Encore plus d'espace pour les très petits écrans */
   }
   
   .modal-content {
-    background-color: var(--white-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: calc(100vh - 120px);
   }
+}

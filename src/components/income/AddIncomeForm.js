@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
 import './AddIncomeForm.css';
+import ModalFooter from '../common/ModalFooter'; // Importer le ModalFooter
+
 
 const AddIncomeForm = ({ onClose, prefillDate }) => {
   const dispatch = useDispatch();
@@ -183,6 +185,14 @@ const AddIncomeForm = ({ onClose, prefillDate }) => {
             {t('common.save')}
           </button>
         </div>
+        <ModalFooter>
+          <button type="button" className="btn btn-outline" onClick={onClose}>
+            {t('common.cancel')}
+          </button>
+          <button type="submit" className="btn btn-success">
+            {t('common.save')}
+          </button>
+        </ModalFooter>
       </form>
     </div>
   );

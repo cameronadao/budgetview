@@ -48,6 +48,12 @@ body {
   overflow-x: hidden;
 }
 
+body.modal-open {
+  position: fixed;
+  width: 100%;
+  overflow-y: scroll; /* Permettre le scroll si nécessaire */
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -1024,6 +1030,10 @@ input:checked + .toggle-slider:before {
 @media (max-width: 575px) {
   html {
     font-size: 14px;
+  }
+
+  body.modal-open {
+    padding-bottom: 60px; /* Hauteur de la barre de navigation mobile */
   }
   
   .header {
