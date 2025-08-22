@@ -11,6 +11,8 @@ import AddExpenseForm from '../expenses/AddExpenseForm';
 import AddIncomeForm from '../income/AddIncomeForm';
 import { deleteExpense, deleteRecurringExpense } from '../../actions/expensesActions';
 import { deleteIncome, deleteRecurringIncome } from '../../actions/incomeActions';
+import Spacer from './Spacer'; // Importer le composant
+
 
 const FinancialCalendar = () => {
   const dispatch = useDispatch();
@@ -298,6 +300,7 @@ const FinancialCalendar = () => {
           />
         </Modal>
       )}
+      <Spacer /> {/* Ajouter le spacer à la fin */}
     </div>
   );
 };

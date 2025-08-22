@@ -5,6 +5,8 @@ import moment from 'moment';
 import BalanceOverview from './BalanceOverview';
 import FinancialSummary from './FinancialSummary';
 import Chart from '../common/Chart';
+import Spacer from '../common/Spacer'; // Importer le composant
+
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -173,6 +175,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <Spacer /> {/* Ajouter le spacer à la fin */}
     </div>
   );
 };

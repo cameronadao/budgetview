@@ -1,0 +1,12 @@
+.spacer {
+    height: 80px; /* Hauteur suffisante pour éviter le chevauchement */
+    width: 100%;
+    display: none;
+  }
+  
+  /* Afficher le spacer uniquement sur mobile */
+  @media (max-width: 575px) {
+    .spacer {
+      display: block;
+    }
+  }

@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toggleDarkMode, setLanguage } from '../../actions/settingsActions';
+import Spacer from '../common/Spacer'; // Importer le composant
+
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -55,6 +57,7 @@ const Settings = () => {
           </div>
         </div>
       </div>
+      <Spacer /> {/* Ajouter le spacer à la fin */}
     </div>
   );
 };

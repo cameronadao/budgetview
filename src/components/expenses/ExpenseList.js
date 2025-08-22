@@ -5,6 +5,8 @@ import moment from 'moment';
 import Modal from '../common/Modal';
 import AddExpenseForm from './AddExpenseForm';
 import ExpenseItem from './ExpenseItem';
+import Spacer from '../common/Spacer'; // Importer le composant
+
 
 const ExpenseList = () => {
   const { t } = useTranslation();
@@ -109,6 +111,7 @@ const ExpenseList = () => {
           <AddExpenseForm onClose={() => setShowAddExpense(false)} />
         </Modal>
       )}
+      <Spacer /> {/* Ajouter le spacer à la fin */}
     </div>
   );
 };
