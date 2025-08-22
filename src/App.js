@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { getExpenses, getRecurringExpenses } from './actions/expensesActions';
@@ -19,6 +19,7 @@ import Settings from './components/settings/Settings';
 function App() {
   const dispatch = useDispatch();
   const { darkMode } = useSelector(state => state.settings);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Load data from localStorage on app start
   useEffect(() => {
@@ -35,12 +36,31 @@ function App() {
     }
   }, [dispatch, darkMode]);
 
+  // Toggle sidebar
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (sidebarOpen && !e.target.closest('.sidebar') && !e.target.closest('.mobile-menu-toggle')) {
+        setSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [sidebarOpen]);
+
   return (
     <Router>
       <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
-        <Header />
+        <Header toggleSidebar={toggleSidebar} />
         <div className="app-container">
-          <Sidebar />
+          <Sidebar isOpen={sidebarOpen} />
           <main className="main-content">
             <Routes>
               <Route exact path="/" element={<Dashboard />} />

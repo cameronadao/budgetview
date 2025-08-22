@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { setLanguage } from '../../actions/settingsActions';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ toggleSidebar }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   
@@ -18,6 +18,9 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
+        <button className="mobile-menu-toggle" onClick={toggleSidebar}>
+          <i className="fas fa-bars"></i>
+        </button>
         <i className="fas fa-wallet"></i>
         <h1>{t('app.title')}</h1>
       </div>
