@@ -15,7 +15,7 @@
   --transition: all 0.3s ease;
   --header-height: 70px;
   --sidebar-width: 250px;
-  --mobile-nav-height: 70px;
+  --mobile-nav-height: 60px; /* Réduit de 70px à 60px */
 }
 
 /* Dark mode variables */
@@ -1078,7 +1078,7 @@ input:checked + .toggle-slider:before {
     order: 1;
     padding: 15px;
     margin-left: 0;
-    padding-bottom: calc(var(--mobile-nav-height) + 20px);
+    padding-bottom: calc(var(--mobile-nav-height) + 30px); /* Augmenter le padding pour éviter le chevauchement */
   }
   
   .page-title {
